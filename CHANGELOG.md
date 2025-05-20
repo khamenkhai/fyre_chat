@@ -4,3 +4,6 @@
 
 ## 0.0.2
 * Refactor code
+
+## 0.0.3
+* Fix message reaction bug

@@ -827,7 +827,7 @@ class FyreChat {
   }) async {
     if (firebaseUser == null) return;
 
-    final String userId = firebaseUser?.uid ?? "";
+    final String userId = firebaseUser!.uid;
 
     final messageRef = FirebaseFirestore.instance
         .collection('${FireChatConst.roomsCollectionName}/$roomId/messages')
@@ -843,14 +843,15 @@ class FyreChat {
     }
 
     final data = snapshot.data();
-    final reactions = Map<String, dynamic>.from(data?['reactions'] ?? {});
+    final Map<String, dynamic> reactions =
+        Map<String, dynamic>.from(data?['reactions'] ?? {});
 
-    if (reactions[emoji] == userId) {
-      // If the same user taps the same emoji again, remove the reaction
-      reactions.remove(emoji);
+    if (reactions[userId] == emoji) {
+      // If user reacted with the same emoji again, remove it
+      reactions.remove(userId);
     } else {
-      // Add or update the reaction
-      reactions[emoji] = userId;
+      // Add or update the user's reaction
+      reactions[userId] = emoji;
     }
 
     await messageRef.update({'reactions': reactions});
@@ -872,8 +873,7 @@ class FyreChat {
 
     if (!snapshot.exists) {
       if (kDebugMode) {
-        
-        ('Message does not exist.');
+        print('Message does not exist.');
       }
       return null;
     }
@@ -881,12 +881,7 @@ class FyreChat {
     final data = snapshot.data();
     final reactions = Map<String, dynamic>.from(data?['reactions'] ?? {});
 
-    for (final entry in reactions.entries) {
-      if (entry.value == userId) {
-        return entry.key; // Return the emoji
-      }
-    }
-
-    return null; // No reaction by this user
+    // Return the emoji for the current user if it exists
+    return reactions[userId] as String?;
   }
 }
