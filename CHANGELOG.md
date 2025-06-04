@@ -10,3 +10,9 @@
 
 ## 0.0.4
 * Refactor code (0.2)
+
+## 0.0.5
+* Add example project in README file
+
+## 0.0.6
+* Fix replied message error in web version
