@@ -16,3 +16,6 @@
 
 ## 0.0.6
 * Fix replied message error in web version
+
+## 0.0.8
+* Fix pagination error in web
