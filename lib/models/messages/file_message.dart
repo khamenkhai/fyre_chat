@@ -1,3 +1,4 @@
+import 'package:fyrechat/util/web_json_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 

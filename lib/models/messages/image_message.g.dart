@@ -14,9 +14,14 @@ ImageMessage _$ImageMessageFromJson(Map<String, dynamic> json) => ImageMessage(
       metadata: json['metadata'] as Map<String, dynamic>?,
       name: json['name'] as String,
       remoteId: json['remoteId'] as String?,
+      // repliedMessage: json['repliedMessage'] == null
+      //     ? null
+      //     : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       repliedMessage: json['repliedMessage'] == null
           ? null
-          : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
+          : Message.fromJson(
+              WebJsonConverter.toMap(json['repliedMessage']),
+            ),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
       size: json['size'] as num,

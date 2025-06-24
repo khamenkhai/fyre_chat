@@ -1,6 +1,6 @@
 name: fyrechat
 description: A Firebase-based Flutter chat core package supporting direct and group messaging with seen status, message replies, and Firestore integration.
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/khamenkhai/fyre_chat.git
 
 environment:
